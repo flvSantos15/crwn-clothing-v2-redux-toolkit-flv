@@ -27,8 +27,9 @@ const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(
 // const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = configureStore({
-  reducer: rootReducer
-  // middleware: middleWares
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleWares)
 })
 
 // createStore(
